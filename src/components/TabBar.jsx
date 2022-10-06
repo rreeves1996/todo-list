@@ -22,39 +22,39 @@ export default function TabBar() {
     setBasicActive(tab);
   };
 
-  return (
-    <>
-        <div className="tab-container">
-            <MDBTabs className='mb-3 tabs'>
-                <MDBTabsItem>
-                    <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
-                        Tab 1
-                    </MDBTabsLink>
-                </MDBTabsItem>
-                <MDBTabsItem>
-                    <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
-                        Tab 2
-                    </MDBTabsLink>
-                </MDBTabsItem>
-                <MDBTabsItem>
-                    <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
-                        Tab 3
-                    </MDBTabsLink>
-                </MDBTabsItem>
-            </MDBTabs>
+    return (
+        <>
+            <div className="tab-container">
+                <MDBTabs className='mb-3 tabs'>
+                    <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
+                            This Week
+                        </MDBTabsLink>
+                    </MDBTabsItem>
+                    <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
+                            Next Week
+                        </MDBTabsLink>
+                    </MDBTabsItem>
+                    <MDBTabsItem>
+                        <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
+                            Etc
+                        </MDBTabsLink>
+                    </MDBTabsItem>
+                </MDBTabs>
 
-            <MDBTabsContent>
-                <MDBTabsPane className='this-week tab-content' show={basicActive === 'tab1'}>
-                    <ThisWeek />
-                </MDBTabsPane>
-                <MDBTabsPane className='next-week tab-content' show={basicActive === 'tab2'}>
-                    <NextWeek />
-                </MDBTabsPane>
-                <MDBTabsPane className='etc tab-content' show={basicActive === 'tab3'}>
-                    <Etc />
-                </MDBTabsPane>
-            </MDBTabsContent>
-        </div>
-    </>
-  );
+                <MDBTabsContent>
+                    <MDBTabsPane className='this-week tab-content' show={basicActive === 'tab1'}>
+                        <ThisWeek />
+                    </MDBTabsPane>
+                    <MDBTabsPane className='next-week tab-content' show={basicActive === 'tab2'}>
+                        <NextWeek />
+                    </MDBTabsPane>
+                    <MDBTabsPane className='etc tab-content' show={basicActive === 'tab3'}>
+                        <Etc />
+                    </MDBTabsPane>
+                </MDBTabsContent>
+            </div>
+        </>
+    );
 }

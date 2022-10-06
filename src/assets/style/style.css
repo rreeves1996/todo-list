@@ -1,6 +1,7 @@
 main {
     display: flex;
     justify-content: center;
+
 }
 .title {
     position: absolute;
@@ -15,6 +16,7 @@ main {
     width: 40%;
 }
 .tab-content {
+    font-family: 'Montserrat';
     width: 100%;
-    padding: 5px 10px;
+    padding: 0 5px;
 }
