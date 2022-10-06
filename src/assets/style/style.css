@@ -1,0 +1,20 @@
+main {
+    display: flex;
+    justify-content: center;
+}
+.title {
+    position: absolute;
+    display: flex;  justify-content: center;
+    top: 70px;
+    font-family: 'Montserrat';
+    font-size: 1.5em;
+    width: 100%;
+}
+.tab-container {
+    margin-top: 25px;
+    width: 40%;
+}
+.tab-content {
+    width: 100%;
+    padding: 5px 10px;
+}

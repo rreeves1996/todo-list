@@ -1,3 +1,4 @@
+import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import NavBar from "./NavBar";
 import TabBar from "./TabBar";
@@ -10,7 +11,7 @@ export default function Container() {
     const renderPage = () => {
         switch(page) {
             case "Home":
-                return;
+                return <TabBar />;
             case "Contact":
                 return;
             default:
@@ -23,7 +24,10 @@ export default function Container() {
     return (
         <>
             <NavBar page={page} handlePageChange={handlePageChange} />
-            <TabBar />
+            <h1><strong className='title'>To-Do List</strong></h1>
+            <main>
+                {renderPage()}
+            </main>
         </>
     )
 }

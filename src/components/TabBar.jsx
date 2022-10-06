@@ -7,6 +7,9 @@ import {
   MDBTabsPane,
 //   MDBBadge
 } from 'mdb-react-ui-kit';
+import ThisWeek from './tabs/ThisWeek'
+import NextWeek from './tabs/NextWeek'
+import Etc from './tabs/Etc'
 
 export default function TabBar() {
   const [basicActive, setBasicActive] = useState('tab1');
@@ -21,38 +24,37 @@ export default function TabBar() {
 
   return (
     <>
-      <MDBTabs className='mb-3'>
-        <MDBTabsItem>
-            <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
-                {/* <MDBBadge pill color='danger'>!</MDBBadge> */}
-                <span>
-                    Tab 1
-                </span>
-            </MDBTabsLink>
-        </MDBTabsItem>
-        <MDBTabsItem>
-            <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
-                {/* <MDBBadge pill color='danger'>!</MDBBadge> */}
-                <span>
-                    Tab 2
-                </span>
-            </MDBTabsLink>
-        </MDBTabsItem>
-        <MDBTabsItem>
-            <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
-                {/* <MDBBadge pill color='danger'>!</MDBBadge> */}
-                <span>
-                    Tab 3
-                </span>
-            </MDBTabsLink>
-        </MDBTabsItem>
-        </MDBTabs>
+        <div className="tab-container">
+            <MDBTabs className='mb-3 tabs'>
+                <MDBTabsItem>
+                    <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
+                        Tab 1
+                    </MDBTabsLink>
+                </MDBTabsItem>
+                <MDBTabsItem>
+                    <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
+                        Tab 2
+                    </MDBTabsLink>
+                </MDBTabsItem>
+                <MDBTabsItem>
+                    <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
+                        Tab 3
+                    </MDBTabsLink>
+                </MDBTabsItem>
+            </MDBTabs>
 
-        <MDBTabsContent>
-            <MDBTabsPane show={basicActive === 'tab1'}>Tab 1 content</MDBTabsPane>
-            <MDBTabsPane show={basicActive === 'tab2'}>Tab 2 content</MDBTabsPane>
-            <MDBTabsPane show={basicActive === 'tab3'}>Tab 3 content</MDBTabsPane>
-        </MDBTabsContent>
+            <MDBTabsContent>
+                <MDBTabsPane className='this-week tab-content' show={basicActive === 'tab1'}>
+                    <ThisWeek />
+                </MDBTabsPane>
+                <MDBTabsPane className='next-week tab-content' show={basicActive === 'tab2'}>
+                    <NextWeek />
+                </MDBTabsPane>
+                <MDBTabsPane className='etc tab-content' show={basicActive === 'tab3'}>
+                    <Etc />
+                </MDBTabsPane>
+            </MDBTabsContent>
+        </div>
     </>
   );
 }
