@@ -5,7 +5,7 @@ import {
   MDBTabsLink,
   MDBTabsContent,
   MDBTabsPane,
-  MDBBadge
+//   MDBBadge
 } from 'mdb-react-ui-kit';
 
 export default function TabBar() {
