@@ -6,17 +6,104 @@ main {
 .title {
     position: absolute;
     display: flex;  justify-content: center;
-    top: 70px;
+    top: 30px;
     font-family: 'Montserrat';
     font-size: 1.5em;
     width: 100%;
 }
 .tab-container {
     margin-top: 25px;
-    width: 40%;
+    width: 50%;
 }
 .tab-content {
     font-family: 'Montserrat';
     width: 100%;
     padding: 0 5px;
+}
+.list-group-light .list-group-item {
+    padding: .2rem 0;
+    border: none;
+}
+input {
+    line-height: 0;
+    border: none;
+    border-bottom: 2px solid var(--mdb-gray-200);
+}
+input:focus {
+    outline: none;
+}
+.row {
+    display: flex;
+    flex-direction: row;    flex-wrap: nowrap;
+    --mdb-gutter-x: -1rem;
+    width: 40%;
+}
+.day-container {
+    display: flex;
+    align-items: center;
+}
+.day {
+    border: 1px solid var(--mdb-gray-200);
+    padding: 1rem;
+    border-radius: 6px;
+}
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: auto;
+}
+.list-group-item {
+    margin-top: 0;
+    margin-bottom: 0;
+    opacity: 100%;
+    transition: all 0.3s;
+}
+.collapsed .list-group-item {
+    opacity: 0%;
+    margin-top: 6px;
+    margin-bottom: -35px !important;
+    pointer-events: none;
+}
+.date {
+    position: absolute;
+    opacity: 100%;
+    transition: all 0.5s;
+}
+.date.hidden {
+    position: absolute;
+    opacity: 0%;
+}
+.fa-caret-down {
+    display: flex;  justify-content: center;    align-items: center;
+
+    margin-top: 1rem;
+
+    color: var(--mdb-gray-700);
+    border: 1px solid var(--mdb-gray-500);
+    border-radius: 50%;
+    width: 20px;    height: 20px;
+    cursor: pointer;
+
+    transition: all 0.2s;
+}
+.fa-caret-down:hover {
+    color: var(--mdb-gray-900);
+    border: 1px solid var(--mdb-gray-700);
+}
+.fa-caret-down.active {
+    transform: rotate(180deg);
+}
+.clear-list-button {
+    width: 50%;
+    border: 2px solid var(--mdb-gray-500);
+    background-color: transparent;
+}
+.fa-trash-can {
+    color: var(--mdb-gray-200);
+    opacity: 100%;
+}
+.body-container {
+    display: flex;
+    align-items: center;
 }
