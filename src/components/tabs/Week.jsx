@@ -7,19 +7,21 @@ function WeekDay() {
     return (
         <div className="day-container">
             <div className={collapsed ? "day collapsed" : "day"} >
-                <div className="day-header">
-                    <h5><strong>Thursday</strong></h5>
+                <div className="day-collapsed-header">
+                    <div className="day-header">
+                        <h5><strong>Thursday</strong></h5>
+                        {collapsed ? (
+                            <>
+                                <h6 className="date hidden">Oct. 6th</h6>
+                            </>
+                        ) : (
+                            <>
+                                <h6 className="date">Oct. 6th</h6>
+                            </>
+                        )}
+                        
+                    </div>
                     {collapsed ? (
-                        <>
-                        </>
-                    ) : (
-                        <>
-                            <h6>Oct. 6th</h6>
-                        </>
-                    )}
-                    
-                </div>
-                {collapsed ? (
                         <>
                             <h6 className="date">Oct. 6th</h6>
                         </>
@@ -28,6 +30,7 @@ function WeekDay() {
                             <h6 className="date hidden">Oct. 6th</h6>
                         </>
                     )}
+                </div>
                 <div className={collapsed ? "day-body row collapsed" : "day-body row"}>
                     <div className="col">
                         <MDBListGroup style={{ minWidth: '22rem' }} light>

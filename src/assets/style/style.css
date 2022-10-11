@@ -27,7 +27,7 @@ main {
 input {
     line-height: 0;
     border: none;
-    border-bottom: 2px solid var(--mdb-gray-200);
+    border-bottom: 2px solid var(--mdb-gray-400);
 }
 input:focus {
     outline: none;
@@ -36,16 +36,29 @@ input:focus {
     display: flex;
     flex-direction: row;    flex-wrap: nowrap;
     --mdb-gutter-x: -1rem;
-    width: 40%;
+    width: 100%;
+    justify-content: flex-start;
+}
+.col {
+    flex: 0;
+    width: 40% !important;
 }
 .day-container {
     display: flex;
     align-items: center;
 }
 .day {
-    border: 1px solid var(--mdb-gray-200);
+    display: flex;  justify-content: center; align-items:center;
+    flex-direction: column;
+    border: 1px solid var(--mdb-gray-400);
     padding: 1rem;
     border-radius: 6px;
+}
+.day-collapsed-header {
+    width: 100%;
+    display: flex;  justify-content: space-between;
+    flex-direction: column;
+
 }
 .day-header {
     display: flex;
@@ -57,7 +70,7 @@ input:focus {
     margin-top: 0;
     margin-bottom: 0;
     opacity: 100%;
-    transition: all 0.3s;
+    transition: all 400ms;
 }
 .collapsed .list-group-item {
     opacity: 0%;
@@ -65,34 +78,49 @@ input:focus {
     margin-bottom: -35px !important;
     pointer-events: none;
 }
+.day-body {
+    margin-top: 5px;
+}
 .date {
-    position: absolute;
+    margin-bottom: -35px;
     opacity: 100%;
-    transition: all 0.5s;
+    transition: all 400ms;
 }
 .date.hidden {
-    position: absolute;
+    margin: -20px 0 0;
     opacity: 0%;
 }
 .fa-caret-down {
+    position: relative;
     display: flex;  justify-content: center;    align-items: center;
-
-    margin-top: 1rem;
-
+    font-size: 1.5rem;
     color: var(--mdb-gray-700);
     border: 1px solid var(--mdb-gray-500);
     border-radius: 50%;
-    width: 20px;    height: 20px;
+    width: 30px;    height: 30px;
     cursor: pointer;
-
+    margin-top: 10px;
     transition: all 0.2s;
 }
 .fa-caret-down:hover {
     color: var(--mdb-gray-900);
     border: 1px solid var(--mdb-gray-700);
+    transform: scale(1.15);
 }
+.fa-caret-down:active {
+    transform: scale(1);
+}
+
 .fa-caret-down.active {
     transform: rotate(180deg);
+}
+.fa-caret-down.active:hover {
+    transform: scale(1.15)
+    rotate(180deg);
+}
+.fa-caret-down.active:active {
+    transform: scale(1)
+    rotate(180deg);
 }
 .clear-list-button {
     width: 50%;
