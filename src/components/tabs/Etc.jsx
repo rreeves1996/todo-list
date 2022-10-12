@@ -3,7 +3,7 @@ import { MDBListGroup, MDBListGroupItem, MDBCheckbox } from 'mdb-react-ui-kit';
 
 
 export default function Etc() {
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState([]);
     const [itemCount, addItem] = useState(0);
 
     const deleteItem = () => {
@@ -36,6 +36,7 @@ export default function Etc() {
                 {items}
             </MDBListGroup> 
             <button onClick={() => addNewItem()}>Add Item</button>
+            <button onClick={() => deleteItem()}>Delete</button>
         </>
     )
 }

@@ -13,7 +13,7 @@
     ·
     <a href="https://github.com/rreeves1996/todo-list/features">Inquire About Features</a>
     <br />
-    <a href='#'><h2>Heroku Deployment (!NOT YET DEPLOYED!)</h2></a>
+    <a href='https://rreeves-todo-list.herokuapp.com/'><h2>Heroku Deployment</h2></a>
   </p>
 </div>
 
