@@ -1,33 +1,43 @@
 import React, { useState } from "react";
 import { MDBListGroup, MDBListGroupItem, MDBCheckbox } from 'mdb-react-ui-kit';
+import dayjs from "dayjs";
 
-function WeekDay() {
+function WeekDay(props) {
     const [collapsed, setCollapsed] = useState(true);
+    const [items, addItems] = useState();
+
+    let itemCounter = 0;
+
+    // const handleChange = (e) => {
+    //     const text = e.target;
+
+    //     if text 
+    // }
 
     return (
         <div className="day-container">
             <div className={collapsed ? "day collapsed" : "day"} >
                 <div className="day-collapsed-header">
                     <div className="day-header">
-                        <h5><strong>Thursday</strong></h5>
+                        <h5><strong>{props.day}</strong></h5>
                         {collapsed ? (
                             <>
-                                <h6 className="date hidden">Oct. 6th</h6>
+                                <h6 className="date hidden">{props.date}</h6>
                             </>
                         ) : (
                             <>
-                                <h6 className="date">Oct. 6th</h6>
+                                <h6 className="date">{props.date}</h6>
                             </>
                         )}
                         
                     </div>
                     {collapsed ? (
                         <>
-                            <h6 className="date">Oct. 6th</h6>
+                            <h6 className="date">{props.date}</h6>
                         </>
                     ) : (
                         <>
-                            <h6 className="date hidden">Oct. 6th</h6>
+                            <h6 className="date hidden">{props.date}</h6>
                         </>
                     )}
                 </div>
@@ -36,17 +46,17 @@ function WeekDay() {
                         <MDBListGroup style={{ minWidth: '22rem' }} light>
                             <MDBListGroupItem>
                                 <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id=""></input>
+                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
                             </MDBListGroupItem>
 
                             <MDBListGroupItem>
                                 <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id=""></input>
+                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
                             </MDBListGroupItem>
 
                             <MDBListGroupItem>
                                 <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id=""></input>
+                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
                             </MDBListGroupItem>
                         </MDBListGroup> 
                     </div>
@@ -54,17 +64,17 @@ function WeekDay() {
                         <MDBListGroup style={{ minWidth: '22rem' }} light>
                             <MDBListGroupItem>
                                 <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id=""></input>
+                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
                             </MDBListGroupItem>
 
                             <MDBListGroupItem>
                                 <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id=""></input>
+                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
                             </MDBListGroupItem>
 
                             <MDBListGroupItem>
                                 <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id=""></input>
+                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
                             </MDBListGroupItem>
                         </MDBListGroup> 
                     </div>
@@ -78,9 +88,15 @@ function WeekDay() {
 }
 
 export default function Week(props) {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
     return (
         <div className="week-container">
-            <WeekDay />
+            {days.map((day, index) => (
+                <>
+                    <WeekDay day={dayjs().day(index).format('dddd')} date={dayjs().day(index).format('MMM D')}/>
+                </>
+            ))}
         </div>
     )
 }
