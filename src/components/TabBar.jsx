@@ -26,17 +26,17 @@ export default function TabBar() {
         <>
             <div className="tab-container">
                 <MDBTabs className='mb-3 tabs'>
-                    <MDBTabsItem>
+                    <MDBTabsItem key="ThisWeek">
                         <MDBTabsLink onClick={() => handleBasicClick('tab1')} active={basicActive === 'tab1'}>
                             This Week
                         </MDBTabsLink>
                     </MDBTabsItem>
-                    <MDBTabsItem>
+                    <MDBTabsItem key="NextWeek">
                         <MDBTabsLink onClick={() => handleBasicClick('tab2')} active={basicActive === 'tab2'}>
                             Next Week
                         </MDBTabsLink>
                     </MDBTabsItem>
-                    <MDBTabsItem>
+                    <MDBTabsItem key="Etc">
                         <MDBTabsLink onClick={() => handleBasicClick('tab3')} active={basicActive === 'tab3'}>
                             Etc
                         </MDBTabsLink>
