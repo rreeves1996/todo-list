@@ -6,28 +6,30 @@ export default function Etc() {
     const [itemText, setItemText] = useState([]);
     const [listItems, setListItems] = useState([]);
     const [itemCount, setItemCount] = useState(0);
+    const [loading, setLoading] = useState(false);
 
     const deleteItem = (id) => {
-        let newList = listItems;
-        
-        const filteredList = newList.splice(0, 1);
-        setListItems(filteredList);
-        renderList(filteredList);
-        console.log(filteredList);
+        const newList = listItems;
+        newList.forEach(item => {
+            console.log(item.id)
+            // if(item.id === id) {
+            //     item.remove();
+            //     console.log("removed");
+            // }
+        })
     }
 
-    const handleAddText = (event, id) => {
-        setItemText(itemText[id] + event);
+    const handleAddText = (event) => {
         console.log(itemText);
     }
 
-    function Item( props ) {
+    function Item(props) {
         return (
             <>
                 <MDBListGroupItem>
                     <MDBCheckbox inline className="checkbox"/>
                     <input name="to-do-input" id="list-item-input" onChange={handleAddText}></input>
-                    <button onClick={() => props.deleteItem(props.id)}>Delete</button>
+                    <button onClick={() => deleteItem(props.id)}>Delete</button>
                 </MDBListGroupItem>
             </>
         )
@@ -46,27 +48,30 @@ export default function Etc() {
     }
 
     useEffect(()=> {
-        const renderList = () => {
-            if(listItems) {
-                listItems.map((item) => (
-                <>
-                    {item.body}
-                </>
-            ));
-            } else {
-                return;
-            }
-        }
+        console.log(listItems);
+    }, [loading]);
 
-        renderList();
-    }, [listItems])
+
     return (
         <>
             <h1>
                 <strong>Etc.</strong>
             </h1>
             <MDBListGroup style={{ minWidth: '22rem' }} light>
-            {renderList()}
+                {loading ? (
+                    <>
+                        <h1>Loading...</h1>
+                    </>
+                ) : (
+                    <>
+                        {listItems.map((item) => (
+                            <>
+                                {item.body}
+                            </>
+                        ))}
+                    </>
+                )}
+                
             </MDBListGroup> 
             <button onClick={() => handleAddListItem()}>Add Item</button>
         </>
