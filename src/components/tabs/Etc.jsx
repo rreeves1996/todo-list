@@ -1,56 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { MDBListGroup, MDBListGroupItem, MDBCheckbox } from 'mdb-react-ui-kit';
-
+import React, { useState } from "react";
+import { MDBListGroup } from 'mdb-react-ui-kit';
+import Item from "./ListItem"
 
 export default function Etc() {
     const [itemText, setItemText] = useState([]);
-    const [listItems, setListItems] = useState([]);
+    const [itemArray, setItemArray] = useState([]);
     const [itemCount, setItemCount] = useState(0);
-    const [loading, setLoading] = useState(false);
 
     const deleteItem = (id) => {
-        const newList = listItems;
-        newList.forEach(item => {
-            console.log(item.id)
-            // if(item.id === id) {
-            //     item.remove();
-            //     console.log("removed");
-            // }
-        })
+        console.log(id);
+        const filteredItemArray = itemArray.filter((item) => {
+            return item.id !== id;
+        });
+        console.log(filteredItemArray);
     }
-
     const handleAddText = (event) => {
         console.log(itemText);
     }
 
-    function Item(props) {
-        return (
-            <>
-                <MDBListGroupItem>
-                    <MDBCheckbox inline className="checkbox"/>
-                    <input name="to-do-input" id="list-item-input" onChange={handleAddText}></input>
-                    <button onClick={() => deleteItem(props.id)}>Delete</button>
-                </MDBListGroupItem>
-            </>
-        )
-    }
-
-
-    const handleAddListItem = () => {
+    const handleAddItem = () => {
         setItemCount(itemCount + 1);
-
-        let newListItem = {
+        const newItem = {
             id: itemCount,
-            body: <Item key={itemCount} id={itemCount} deleteItem={deleteItem}/>
+            body: <Item key={itemCount} id={itemCount} deleteItem={deleteItem} />
         }
-
-        setListItems(current => [...current, newListItem]);
+        setItemArray((itemArray) => [...itemArray, newItem]);
+        console.log(itemArray);
     }
-
-    useEffect(()=> {
-        console.log(listItems);
-    }, [loading]);
-
 
     return (
         <>
@@ -58,22 +34,13 @@ export default function Etc() {
                 <strong>Etc.</strong>
             </h1>
             <MDBListGroup style={{ minWidth: '22rem' }} light>
-                {loading ? (
+                {itemArray.map((item) => (
                     <>
-                        <h1>Loading...</h1>
+                        {item.body}
                     </>
-                ) : (
-                    <>
-                        {listItems.map((item) => (
-                            <>
-                                {item.body}
-                            </>
-                        ))}
-                    </>
-                )}
-                
+                ))}
             </MDBListGroup> 
-            <button onClick={() => handleAddListItem()}>Add Item</button>
+            <button onClick={() => handleAddItem()}>Add Item</button>
         </>
     )
 }
