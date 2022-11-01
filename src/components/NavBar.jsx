@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  MDBNavbar,
-  MDBContainer,
-  MDBBreadcrumb,
-  MDBBreadcrumbItem
-} from 'mdb-react-ui-kit';
+import { MDBNavbar, MDBContainer, MDBBreadcrumb, MDBBreadcrumbItem } from 'mdb-react-ui-kit';
 
-export default function NavBar( { page, handlePageChange } ) {
+export default function NavBar({ page, handlePageChange }) {
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
         <div className='pt-3 px-4 bg-light mb-4'>
@@ -18,9 +13,7 @@ export default function NavBar( { page, handlePageChange } ) {
                             {page === "Home" ? (
                                 <u>Home</u>
                             ) : (
-                                <>
-                                    Home
-                                </>
+                                <>Home</>
                             )}
                         </a>
                     </MDBBreadcrumbItem>
@@ -34,9 +27,7 @@ export default function NavBar( { page, handlePageChange } ) {
                             {page === "Contact" ? (
                                 <u>Contact</u>
                             ) : (
-                                <>
-                                    Contact
-                                </>
+                                <>Contact</>
                             )}
                         </a>
                     </MDBBreadcrumbItem>

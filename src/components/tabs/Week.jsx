@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MDBListGroup, MDBListGroupItem, MDBCheckbox, MDBIcon } from 'mdb-react-ui-kit';
+import { FaCaretDown } from "react-icons/fa";
 import dayjs from "dayjs";
 
 function WeekDay(props) {
@@ -90,10 +91,8 @@ function WeekDay(props) {
                         </MDBListGroup> 
                     </div>
                 </div>
-                <i className={collapsed ? "fa-solid fa-caret-down" : "fa-solid fa-caret-down active"} onClick={() => setCollapsed(!collapsed)}></i>
-
+                <FaCaretDown className={collapsed ? "caret" : "caret active"} onClick={() => setCollapsed(!collapsed)} />
             </div>
-
         </div>
     )
 }

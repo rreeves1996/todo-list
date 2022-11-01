@@ -1,14 +1,11 @@
 main {
-    display: flex;
-    justify-content: center;
-
+    display: flex;  justify-content: center;
 }
 .title {
     position: absolute;
     display: flex;  justify-content: center;
+    font-family: 'Montserrat';  font-size: 1.5em;
     top: 30px;
-    font-family: 'Montserrat';
-    font-size: 1.5em;
     width: 100%;
 }
 .tab-container {
@@ -17,8 +14,8 @@ main {
 }
 .tab-content {
     font-family: 'Montserrat';
+    padding: 0 .5rem;
     width: 100%;
-    padding: 0 5px;
 }
 .list-group-light .list-group-item {
     padding: .2rem 0;
@@ -44,24 +41,17 @@ input:focus {
     width: 40% !important;
 }
 .day-container {
-    display: flex;
-    align-items: center;
-
+    display: flex;  align-items: center;
 }
 .day {
     display: flex;  justify-content: center; align-items:center;
     flex-direction: column;
-    border: 1px solid var(--mdb-gray-400);
-    padding: 1rem;
-    margin: .1rem;
-
-    border-radius: 6px;
+    border: 1px solid var(--mdb-gray-400);  border-radius: 6px;
+    margin: .1rem;  padding: 1rem;
 }
 .day-collapsed-header {
     width: 100%;
-    display: flex;  justify-content: space-between;
-    flex-direction: column;
-
+    display: flex;  flex-direction: column; justify-content: space-between;
 }
 .day-header {
     display: flex;
@@ -70,15 +60,13 @@ input:focus {
     height: auto;
 }
 .list-group-item {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: 0;   margin-bottom: 0;
     opacity: 100%;
     transition: all 400ms;
 }
 .collapsed .list-group-item {
     opacity: 0%;
-    margin-top: 6px;
-    margin-bottom: -35px !important;
+    margin-top: 6px;    margin-bottom: -35px !important;
     pointer-events: none;
 }
 .day-body {
@@ -93,7 +81,7 @@ input:focus {
     margin: -20px 0 0;
     opacity: 0%;
 }
-.fa-caret-down {
+.caret {
     position: relative;
     display: flex;  justify-content: center;    align-items: center;
     font-size: 1.5rem;
@@ -105,23 +93,23 @@ input:focus {
     margin-top: 10px;
     transition: all 0.2s;
 }
-.fa-caret-down:hover {
+.caret:hover {
     color: var(--mdb-gray-900);
     border: 1px solid var(--mdb-gray-700);
     transform: scale(1.15);
 }
-.fa-caret-down:active {
+.caret:active {
     transform: scale(1);
 }
 
-.fa-caret-down.active {
+.caret.active {
     transform: rotate(180deg);
 }
-.fa-caret-down.active:hover {
+.caret.active:hover {
     transform: scale(1.15)
     rotate(180deg);
 }
-.fa-caret-down.active:active {
+.caret.active:active {
     transform: scale(1)
     rotate(180deg);
 }
@@ -135,6 +123,5 @@ input:focus {
     opacity: 100%;
 }
 .body-container {
-    display: flex;
-    align-items: center;
+    display: flex;  align-items: center;
 }
