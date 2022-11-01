@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { MDBListGroup, MDBListGroupItem, MDBCheckbox, MDBIcon } from 'mdb-react-ui-kit';
-import { FaCaretDown } from "react-icons/fa";
+import { FaCaretDown, FaPlusSquare, FaTimes, FaCheck } from "react-icons/fa";
 import dayjs from "dayjs";
+import ListItem from './ListItem';
 
 function WeekDay(props) {
     const [collapsed, setCollapsed] = useState(true);
     const [hasItems, setItems] = useState(false);
+    const [itemInput, setItemInput] = useState(false);
+    const [todos, setTodos] = useState(['Item1', 'Item2', 'Item3', 'Item4']);
 
     const handleChange = () => {
         const itemInput = document.querySelectorAll('#list-item-input');
@@ -53,43 +56,32 @@ function WeekDay(props) {
                         </>
                     )}
                 </div>
-                <div className={collapsed ? "day-body row collapsed" : "day-body row"}>
-                    <div className="col">
-                        <MDBListGroup style={{ minWidth: '22rem' }} light>
+                <div className={collapsed ? "todo-list-container collapsed" : "todo-list-container"}>
+                    <MDBListGroup style={{ minWidth: '22rem' }} light>
+                        {todos.map((todo) => (
+                            <>
+                                <ListItem text={todo} />
+                            </>
+                        ))}
+                        {todos.length < 6 ? (
                             <MDBListGroupItem>
-                                <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
+                            {itemInput ? (
+                                <>
+                                    <MDBCheckbox inline className="checkbox hidden" />
+                                    <input name="to-do-input" id="list-item-input" placeholder="Type something..."></input>
+                                    <FaCheck className="confirm" />
+                                    <FaTimes className="cancel" onClick={() => setItemInput(!itemInput)}/>
+                                </>
+                            ) : (  
+                                <p className="new-item" onClick={() => setItemInput(!itemInput)}>
+                                    <FaPlusSquare className="new-item-icon" /><span>New Item</span>
+                                </p> 
+                            )}
                             </MDBListGroupItem>
-
-                            <MDBListGroupItem>
-                                <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
-                            </MDBListGroupItem>
-
-                            <MDBListGroupItem>
-                                <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
-                            </MDBListGroupItem>
-                        </MDBListGroup> 
-                    </div>
-                    <div className="col">
-                        <MDBListGroup style={{ minWidth: '22rem' }} light>
-                            <MDBListGroupItem>
-                                <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
-                            </MDBListGroupItem>
-
-                            <MDBListGroupItem>
-                                <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
-                            </MDBListGroupItem>
-
-                            <MDBListGroupItem>
-                                <MDBCheckbox inline className="checkbox"/>
-                                <input name="to-do-input" id="list-item-input" onChange={handleChange}></input>
-                            </MDBListGroupItem>
-                        </MDBListGroup> 
-                    </div>
+                        ) : (
+                            <></>
+                        )}
+                    </MDBListGroup> 
                 </div>
                 <FaCaretDown className={collapsed ? "caret" : "caret active"} onClick={() => setCollapsed(!collapsed)} />
             </div>
