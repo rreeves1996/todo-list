@@ -1,3 +1,6 @@
+:root {
+    --mdb-purple: #826aaf;
+}
 main {
     display: flex;  justify-content: center;
 }
@@ -12,6 +15,19 @@ input {
 input:focus {
     outline: none;
 }
+.form-check-input::after, .form-check-input::before {
+    display: none;
+}
+.nav-link.active {
+    color: var(--mdb-purple) !important;
+    border-color: var(--mdb-purple) !important;
+}
+.form-check-input[type=checkbox]:checked {
+    top: 0;
+    border-color: var(--mdb-purple) !important;
+    background-color: var(--mdb-purple) !important;
+    z-index: 0;
+}
 .hidden {
     opacity: 0;
 }
@@ -24,7 +40,8 @@ input:focus {
 }
 .tab-container {
     margin-top: 1rem;
-    width: 40%;
+    width: 50%;
+    min-width: 600px;
 }
 .tab-content {
     font-family: 'Montserrat';
@@ -35,19 +52,6 @@ input:focus {
     padding: .2rem 0;
     border: none;
 }
-
-.row {
-    display: flex;  justify-content: flex-start;
-    flex-direction: row;    flex-wrap: nowrap;
-    --mdb-gutter-x: -1rem;
-    width: 100%;
-}
-.list-container {
-    width: 40% !important;
-}
-.day-container {
-    display: flex;  align-items: center;
-}
 .day {
     display: flex;  justify-content: center; align-items:center;
     flex-direction: column;
@@ -55,28 +59,47 @@ input:focus {
     margin: .1rem;  padding: 1rem;
     width: 100%;
 }
+.day-container {
+    display: flex;  align-items: center;
+}
+.day-body {
+    margin-top: 5px;
+}
+.date {
+    margin-bottom: -35px;
+    opacity: 100%;
+    transition: all 400ms;
+}
+.date.hidden {
+    margin: -20px 0 0;
+    opacity: 0%;
+}
 .day-collapsed-header {
     width: 100%;
     display: flex;  flex-direction: column; justify-content: space-between;
 }
 .day-header {
-    display: flex;
-    justify-content: space-between;
+    display: flex;  justify-content: space-between;
     width: 100%;
     height: auto;
 }
-.todo-list-container {
+.todo-body {
+    display: flex; justify-content: space-between;
     width: 100%;
-    transition: all 500ms;
     max-height: 6rem;
+
+    transition: all 500ms;
 }
-.todo-list-container.collapsed {
+.todo-body.collapsed {
     max-height: 1rem;
 }
+.todo-list-container {
+    width: 75%;
+}
 .list-group {
-    max-height: 6.5rem;
-    width: 80%;
     display: flex;  flex-direction: column; flex-wrap: wrap;
+    max-height: 6.5rem; width: 100%;
+    margin-right: 0 !important;
     transition: all 0.5s;
 }
 .list-group-item {
@@ -85,6 +108,9 @@ input:focus {
     opacity: 100%;
     width: 50%;
     transition: all 500ms;
+}
+.form-check-inline {
+    margin-right: .1rem;
 }
 .list-group-item .item-text, .list-group-item #list-item-input {
     width: 100%;
@@ -97,6 +123,34 @@ input:focus {
 }
 #list-item-input:focus {
     opacity: 100%;
+}
+.clear-todos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 200ms;
+}
+.clear-todos button {
+    display: flex;  flex-direction: column; align-items: center;
+    background-color: transparent;
+    border: none;
+    margin-top: 2rem;
+    color: var(--mdb-purple);
+    transition: all 200ms;
+}
+.clear-todos button:hover {
+    filter: brightness(.8);
+}
+.trash-icon {
+    
+    font-size: 3rem;
+    margin: .5rem;
+}
+.clear-todos-text {
+    font-family: var(--mdb-font-roboto);    font-size: .75rem;   font-weight: 900;
+    text-transform: uppercase;
+    
+    letter-spacing: 0px;
 }
 ::placeholder {
     color: var(--mdb-gray-400);
@@ -137,51 +191,41 @@ input:focus {
 .cancel {
     right: -2.7rem;
 }
-.collapsed .list-group-item {
+.collapsed .list-group-item, .collapsed .clear-todos {
     opacity: 0%;
-    margin-bottom: -1rem;
     pointer-events: none;
 }
-.day-body {
-    margin-top: 5px;
-}
-.date {
-    margin-bottom: -35px;
-    opacity: 100%;
-    transition: all 400ms;
-}
-.date.hidden {
-    margin: -20px 0 0;
-    opacity: 0%;
-}
-.caret {
-    position: relative;
-    display: flex;  justify-content: center;    align-items: center;
-    font-size: 1.5rem;
-    color: var(--mdb-gray-700);
-    border: 1px solid var(--mdb-gray-500);  border-radius: 50%;
-    width: 30px;    height: 30px;
-    cursor: pointer;
-    margin-top: 10px;
+
+.collapse-button {
+    background-color: var(--mdb-gray-400);
+    border: none;
+    border-radius: 4px;
+    width: 8rem;
+    margin: 1.5rem 0 -.7rem 0;
     transition: all 0.2s;
 }
-.caret:hover {
-    color: var(--mdb-gray-900);
-    border: 1px solid var(--mdb-gray-700);
+.caret {
+    font-size: 2rem;
+    color: var(--mdb-gray-200);
+
+    transition: all 0.2s;
+}
+.collapse-button:hover {
+    filter: brightness(1.05);
     transform: scale(1.15);
 }
-.caret:active {
+.collapse-button:active {
     transform: scale(1);
 }
 
-.caret.active {
+.collapse-button.active .caret {
     transform: rotate(180deg);
 }
-.caret.active:hover {
-    transform: scale(1.15)
+.collapse-button.active:hover .caret {
+    transform: scale(1.05)
     rotate(180deg);
 }
-.caret.active:active {
+.collapse-button.active:active .caret {
     transform: scale(1)
     rotate(180deg);
 }

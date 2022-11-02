@@ -1,27 +1,53 @@
 import React, { useState } from "react";
 import { MDBListGroup, MDBListGroupItem, MDBCheckbox, MDBIcon } from 'mdb-react-ui-kit';
-import { FaCaretDown, FaPlusSquare, FaTimes, FaCheck } from "react-icons/fa";
+import { FaCaretDown, FaPlusSquare, FaTimes, FaCheck, FaTrashAlt } from "react-icons/fa";
 import dayjs from "dayjs";
+import { v4 as uuidv4 } from 'uuid';
 import ListItem from './ListItem';
+import { useEffect } from "react";
 
 function WeekDay(props) {
     const [collapsed, setCollapsed] = useState(true);
     const [hasItems, setItems] = useState(false);
-    const [itemInput, setItemInput] = useState(false);
-    const [todos, setTodos] = useState(['Item1', 'Item2', 'Item3', 'Item4']);
+    const [addTodo, setAddTodo] = useState(false);
+    const [inputState, setInputState] = useState('');
+    const [todos, setTodos] = useState(() => {
+        return JSON.parse(localStorage.getItem('todo-list')) || []
+    });
 
-    const handleChange = () => {
-        const itemInput = document.querySelectorAll('#list-item-input');
+    const handleChange = (event) => {
+        const value = event.target.value;
 
-        itemInput.forEach((input) => {
-            if(input.value.trim()) {
-                if(hasItems === false) {
-                    setItems(!hasItems);
-                    return;
-                }
-            }
-        })
+        setInputState(value);
     }
+
+    const handleAddTodo = (event) => {
+        event.preventDefault();
+        const newTodo = inputState;
+
+        if(newTodo) {
+            setTodos((todos) => [...todos, { 
+                id: uuidv4(),
+                text: newTodo,
+                complete: false 
+            }]);
+            
+            setAddTodo(!addTodo);
+            setInputState('');
+        }
+    }
+
+    const toggleCompletedTodo = (id) => {
+        const todoList = [...todos];
+        const selectedTodo = todoList.find(item => item.id === id);
+
+        selectedTodo.complete = !selectedTodo.complete;
+        setTodos(todoList);
+    }
+
+    useEffect(() => {
+        todos && localStorage.setItem('todo-list', JSON.stringify(todos))
+    }, [todos])
 
     return (
         <div className="day-container">
@@ -56,34 +82,53 @@ function WeekDay(props) {
                         </>
                     )}
                 </div>
-                <div className={collapsed ? "todo-list-container collapsed" : "todo-list-container"}>
-                    <MDBListGroup style={{ minWidth: '22rem' }} light>
-                        {todos.map((todo) => (
-                            <>
-                                <ListItem text={todo} />
-                            </>
-                        ))}
-                        {todos.length < 6 ? (
-                            <MDBListGroupItem>
-                            {itemInput ? (
+                <div className={collapsed ? "todo-body collapsed" : "todo-body"}>
+                    <div className="todo-list-container">
+                        <MDBListGroup style={{ minWidth: '22rem' }} light>
+                            {todos.map((todo, index) => (
                                 <>
-                                    <MDBCheckbox inline className="checkbox hidden" />
-                                    <input name="to-do-input" id="list-item-input" placeholder="Type something..."></input>
-                                    <FaCheck className="confirm" />
-                                    <FaTimes className="cancel" onClick={() => setItemInput(!itemInput)}/>
+                                    <ListItem key={todo.id} todo={todo} toggleCompletedTodo={toggleCompletedTodo} />
                                 </>
-                            ) : (  
-                                <p className="new-item" onClick={() => setItemInput(!itemInput)}>
-                                    <FaPlusSquare className="new-item-icon" /><span>New Item</span>
-                                </p> 
+                            ))}
+                            {todos.length < 6 ? (
+                                <MDBListGroupItem>
+                                    {addTodo ? (
+                                        <>
+                                            <MDBCheckbox 
+                                                inline 
+                                                className="checkbox hidden" />
+                                            <input
+                                                type="text"
+                                                id="list-item-input" 
+                                                placeholder="Type something..."
+                                                onChange={handleChange} />
+                                            <FaCheck 
+                                                className="confirm" 
+                                                onClick={handleAddTodo} />
+                                            <FaTimes 
+                                                className="cancel" 
+                                                onClick={() => setAddTodo(!addTodo)} />
+                                        </>
+                                    ) : (  
+                                        <p className="new-item" onClick={() => setAddTodo(!addTodo)}>
+                                            <FaPlusSquare className="new-item-icon" />
+                                            <span>New Item</span>
+                                        </p> 
+                                    )}
+                                </MDBListGroupItem>
+                            ) : (
+                                <></>
                             )}
-                            </MDBListGroupItem>
-                        ) : (
-                            <></>
-                        )}
-                    </MDBListGroup> 
+                        </MDBListGroup>
+                    </div>
+                    <div className="clear-todos">
+                        <button><FaTrashAlt className="trash-icon" /><span className="clear-todos-text">Clear Finished</span></button>
+                    </div>
                 </div>
-                <FaCaretDown className={collapsed ? "caret" : "caret active"} onClick={() => setCollapsed(!collapsed)} />
+                <button className={collapsed ? "collapse-button" : "collapse-button active"} onClick={() => setCollapsed(!collapsed)}>
+                    <FaCaretDown  className="caret" />
+                </button>
+                
             </div>
         </div>
     )
@@ -97,12 +142,12 @@ export default function Week(props) {
             {props.week === "This Week" ? 
                 days.map((day, index) => (
                     <>
-                        <WeekDay day={dayjs().day(index).format('dddd')} date={dayjs().day(index).format('MMM D')}/>
+                        <WeekDay key={uuidv4()} day={dayjs().day(index).format('dddd')} date={dayjs().day(index).format('MMM D')}/>
                     </>
                 ))
                 : days.map((day, index) => (
                     <>
-                        <WeekDay day={dayjs().day(index + 7).format('dddd')} date={dayjs().day(index + 7).format('MMM D')}/>
+                        <WeekDay key={uuidv4()} day={dayjs().day(index + 7).format('dddd')} date={dayjs().day(index + 7).format('MMM D')}/>
                     </>
                 ))}
         </div>
