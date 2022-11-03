@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MDBListGroup, MDBListGroupItem, MDBCheckbox, MDBIcon } from 'mdb-react-ui-kit';
 import { FaCaretDown, FaPlusSquare, FaTimes, FaCheck, FaTrashAlt } from "react-icons/fa";
 import dayjs from "dayjs";
 import { v4 as uuidv4 } from 'uuid';
 import ListItem from './ListItem';
-import { useEffect } from "react";
 
 function WeekDay(props) {
     const [collapsed, setCollapsed] = useState(true);
-    const [hasItems, setItems] = useState(false);
     const [addTodo, setAddTodo] = useState(false);
     const [inputState, setInputState] = useState('');
     const [todos, setTodos] = useState(() => {
@@ -67,12 +65,6 @@ function WeekDay(props) {
                         {collapsed ? (
                             <>
                                 <h6 className="date hidden">{props.date}</h6>
-                                {hasItems === true ? (
-                                    <MDBIcon fas icon="exclamation-circle" />
-                                ) : (
-                                    <>
-                                    </>
-                                )}
                             </>
                         ) : (
                             <>
