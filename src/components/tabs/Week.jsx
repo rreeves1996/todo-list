@@ -37,6 +37,15 @@ function WeekDay(props) {
         }
     }
 
+    const handleFinishedTodos = () => {
+        const todoList = [...todos];
+        const filteredTodos = todoList.filter((item) => {
+            return !item.complete
+        });
+
+        setTodos(filteredTodos);
+    }
+
     const toggleCompletedTodo = (id) => {
         const todoList = [...todos];
         const selectedTodo = todoList.find(item => item.id === id);
@@ -122,7 +131,10 @@ function WeekDay(props) {
                         </MDBListGroup>
                     </div>
                     <div className="clear-todos">
-                        <button><FaTrashAlt className="trash-icon" /><span className="clear-todos-text">Clear Finished</span></button>
+                        <button onClick={() => handleFinishedTodos()}>
+                            <FaTrashAlt className="trash-icon" />
+                            <span className="clear-todos-text">Clear Finished</span>
+                        </button>
                     </div>
                 </div>
                 <button className={collapsed ? "collapse-button" : "collapse-button active"} onClick={() => setCollapsed(!collapsed)}>

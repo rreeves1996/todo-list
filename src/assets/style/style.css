@@ -202,17 +202,16 @@ input:focus {
     border-radius: 4px;
     width: 8rem;
     margin: 1.5rem 0 -.7rem 0;
-    transition: all 0.2s;
+    transition: all 150ms;
 }
 .caret {
     font-size: 2rem;
     color: var(--mdb-gray-200);
 
-    transition: all 0.2s;
 }
 .collapse-button:hover {
-    filter: brightness(1.05);
-    transform: scale(1.15);
+    filter: brightness(1.025);
+    transform: scale(1.1);
 }
 .collapse-button:active {
     transform: scale(1);
