@@ -10,7 +10,7 @@ function WeekDay(props) {
     const [addTodo, setAddTodo] = useState(false);
     const [inputState, setInputState] = useState('');
     const [todos, setTodos] = useState(() => {
-        return JSON.parse(localStorage.getItem('todo-list')) || []
+        return JSON.parse(localStorage.getItem(`todo-list${props.date}`)) || []
     });
 
     const handleChange = (event) => {
@@ -53,7 +53,7 @@ function WeekDay(props) {
     }
 
     useEffect(() => {
-        todos && localStorage.setItem('todo-list', JSON.stringify(todos))
+        todos && localStorage.setItem(`todo-list${props.date}`, JSON.stringify(todos))
     }, [todos])
 
     return (
