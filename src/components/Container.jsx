@@ -1,12 +1,9 @@
-import { render } from "@testing-library/react";
 import React, { useState } from "react";
 import NavBar from "./NavBar";
 import TabBar from "./TabBar";
 
 export default function Container() {
     const [page, changePage] = useState("Home");
-
-    
 
     const renderPage = () => {
         switch(page) {

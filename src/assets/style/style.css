@@ -49,8 +49,10 @@ input:focus {
     width: 100%;
 }
 .list-group-light .list-group-item {
+    opacity: 100% !important;
     padding: .2rem 0;
     border: none;
+    transition: all 500ms;
 }
 .day {
     display: flex;  justify-content: center; align-items:center;
@@ -93,19 +95,31 @@ input:focus {
 .todo-body.collapsed {
     max-height: 1rem;
 }
+.etc-todo-container {
+    display: flex;
+}
 .todo-list-container {
     width: 75%;
 }
-.list-group {
+.todo-list-container-etc {
+    width: 50%;
+}
+.todo-list-container-etc .list-group-item {
+    width: 80%;
+}
+.list-group-contained {
+    max-height: 6.5rem;
+    width: 100%;
+}
+.list-group, .list-group-contained {
     display: flex;  flex-direction: column; flex-wrap: wrap;
-    max-height: 6.5rem; width: 100%;
     margin-right: 0 !important;
     transition: all 0.5s;
 }
 .list-group-item {
     display: flex;
     margin: 0 1rem 0 .5rem;
-    opacity: 100%;
+    opacity: 100% !important;
     width: 50%;
     transition: all 500ms;
 }
@@ -117,6 +131,14 @@ input:focus {
     font-weight: 700;   color: var(--mdb-gray-600);
     text-indent: .2rem;
     border-bottom: 2px solid var(--mdb-gray-500)
+}
+.list-group {
+    opacity: 100%;
+    transition: all 500ms;
+}
+.collapsed .list-group {
+    opacity: 0%;
+    pointer-events: none;
 }
 #list-item-input {
     opacity: 70%;
@@ -191,9 +213,10 @@ input:focus {
 .cancel {
     right: -2.7rem;
 }
-.collapsed .list-group-item, .collapsed .clear-todos {
+.collapsed .clear-todos {
     opacity: 0%;
     pointer-events: none;
+    transition: all 500ms;
 }
 
 .collapse-button {

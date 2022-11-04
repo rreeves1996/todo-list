@@ -4,9 +4,7 @@ import {
   MDBTabsItem,
   MDBTabsLink,
   MDBTabsContent,
-  MDBTabsPane,
-//   MDBBadge
-} from 'mdb-react-ui-kit';
+  MDBTabsPane } from 'mdb-react-ui-kit';
 import ThisWeek from './tabs/ThisWeek'
 import NextWeek from './tabs/NextWeek'
 import Etc from './tabs/Etc'
