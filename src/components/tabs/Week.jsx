@@ -11,8 +11,6 @@ function WeekDay(props) {
         return JSON.parse(localStorage.getItem(`todo-list${props.date}`)) || []
     });
 
-    
-
     useEffect(() => {
         todos && localStorage.setItem(`todo-list${props.date}`, JSON.stringify(todos))
     }, [todos])
