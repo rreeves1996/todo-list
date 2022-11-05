@@ -18,7 +18,7 @@ export default function NavBar({ page, handlePageChange }) {
                         </a>
                     </MDBBreadcrumbItem>
                     <MDBBreadcrumbItem>
-                        <a href='' className='text-reset'>
+                        <a href='https://github.com/rreeves1996/todo-list' className='text-reset'>
                             GitHub Repo
                         </a>
                     </MDBBreadcrumbItem>
