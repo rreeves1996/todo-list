@@ -6,9 +6,9 @@ import {
 	MDBTabsContent,
 	MDBTabsPane,
 } from 'mdb-react-ui-kit';
-import ThisWeek from './tabs/ThisWeek';
-import NextWeek from './tabs/NextWeek';
-import Etc from './tabs/Etc';
+import ThisWeek from './ThisWeek';
+import NextWeek from './NextWeek';
+import Etc from './Etc';
 
 export default function TabBar() {
 	const [basicActive, setBasicActive] = useState('tab1');

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FaCaretDown } from 'react-icons/fa';
-import dayjs from 'dayjs';
-import { v4 as uuidv4 } from 'uuid';
 import ListContainer from './ListContainer';
 
 interface WeekDayProps {
@@ -9,11 +7,7 @@ interface WeekDayProps {
 	date: string;
 }
 
-interface WeekProps {
-	week: string;
-}
-
-function WeekDay({ date, day }: WeekDayProps) {
+export default function WeekDay({ date, day }: WeekDayProps) {
 	const [collapsed, setCollapsed] = useState<boolean>(true);
 	const [todos, setTodos] = useState<Todo[]>(() => {
 		return JSON.parse(localStorage.getItem(`todo-list${date}`)!) || [];
@@ -60,46 +54,6 @@ function WeekDay({ date, day }: WeekDayProps) {
 					<FaCaretDown className='caret' />
 				</button>
 			</div>
-		</div>
-	);
-}
-
-export default function Week({ week }: WeekProps) {
-	const days = [
-		'Monday',
-		'Tuesday',
-		'Wednesday',
-		'Thursday',
-		'Friday',
-		'Saturday',
-		'Sunday',
-	];
-
-	return (
-		<div className='week-container'>
-			{week === 'This Week'
-				? days.map((day, index) => (
-						<>
-							<WeekDay
-								key={uuidv4()}
-								day={dayjs().day(index).format('dddd')}
-								date={dayjs().day(index).format('MMM D')}
-							/>
-						</>
-				  ))
-				: days.map((day, index) => (
-						<>
-							<WeekDay
-								key={uuidv4()}
-								day={dayjs()
-									.day(index + 7)
-									.format('dddd')}
-								date={dayjs()
-									.day(index + 7)
-									.format('MMM D')}
-							/>
-						</>
-				  ))}
 		</div>
 	);
 }
