@@ -68,40 +68,36 @@ export default function ListContainer({
 					style={{ minWidth: '22rem' }}
 					light>
 					{todos.map((todo) => (
-						<>
-							<ListItem
-								key={uuidv4()}
-								todo={todo}
-								toggleCompletedTodo={toggleCompletedTodo}
-							/>
-						</>
+						<ListItem
+							key={uuidv4()}
+							todo={todo}
+							toggleCompletedTodo={toggleCompletedTodo}
+						/>
 					))}
 					{etc ? (
-						<>
-							<MDBListGroupItem>
-								{addTodo ? (
-									<>
-										<MDBCheckbox inline className='checkbox hidden' />
-										<input
-											type='text'
-											id='list-item-input'
-											placeholder='Type something...'
-											onChange={handleChange}
-										/>
-										<FaCheck className='confirm' onClick={handleAddTodo} />
-										<FaTimes
-											className='cancel'
-											onClick={() => setAddTodo(!addTodo)}
-										/>
-									</>
-								) : (
-									<p className='new-item' onClick={() => setAddTodo(!addTodo)}>
-										<FaPlusSquare className='new-item-icon' />
-										<span>New Item</span>
-									</p>
-								)}
-							</MDBListGroupItem>
-						</>
+						<MDBListGroupItem>
+							{addTodo ? (
+								<>
+									<MDBCheckbox inline className='checkbox hidden' />
+									<input
+										type='text'
+										id='list-item-input'
+										placeholder='Type something...'
+										onChange={handleChange}
+									/>
+									<FaCheck className='confirm' onClick={handleAddTodo} />
+									<FaTimes
+										className='cancel'
+										onClick={() => setAddTodo(!addTodo)}
+									/>
+								</>
+							) : (
+								<p className='new-item' onClick={() => setAddTodo(!addTodo)}>
+									<FaPlusSquare className='new-item-icon' />
+									<span>New Item</span>
+								</p>
+							)}
+						</MDBListGroupItem>
 					) : (
 						<>
 							{todos.length < 6 ? (
@@ -130,9 +126,7 @@ export default function ListContainer({
 										</p>
 									)}
 								</MDBListGroupItem>
-							) : (
-								<></>
-							)}
+							) : null}
 						</>
 					)}
 				</MDBListGroup>

@@ -26,23 +26,15 @@ export default function WeekDay({ date, day }: WeekDayProps) {
 							<strong>{day}</strong>
 						</h5>
 						{collapsed ? (
-							<>
-								<h6 className='date hidden'>{date}</h6>
-							</>
+							<h6 className='date hidden'>{date}</h6>
 						) : (
-							<>
-								<h6 className='date'>{date}</h6>
-							</>
+							<h6 className='date'>{date}</h6>
 						)}
 					</div>
 					{collapsed ? (
-						<>
-							<h6 className='date'>{date}</h6>
-						</>
+						<h6 className='date'>{date}</h6>
 					) : (
-						<>
-							<h6 className='date hidden'>{date}</h6>
-						</>
+						<h6 className='date hidden'>{date}</h6>
 					)}
 				</div>
 				<div className={collapsed ? 'todo-body collapsed' : 'todo-body'}>

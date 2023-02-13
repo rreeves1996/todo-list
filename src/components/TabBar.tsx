@@ -11,14 +11,14 @@ import NextWeek from './NextWeek';
 import Etc from './Etc';
 
 export default function TabBar() {
-	const [basicActive, setBasicActive] = useState('tab1');
+	const [activeTab, setActiveTab] = useState('tab1');
 
 	const handleBasicClick = (tab: string) => {
-		if (tab === basicActive) {
+		if (tab === activeTab) {
 			return;
 		}
 
-		setBasicActive(tab);
+		setActiveTab(tab);
 	};
 
 	return (
@@ -28,21 +28,23 @@ export default function TabBar() {
 					<MDBTabsItem key='ThisWeek'>
 						<MDBTabsLink
 							onClick={() => handleBasicClick('tab1')}
-							active={basicActive === 'tab1'}>
+							active={activeTab === 'tab1'}>
 							This Week
 						</MDBTabsLink>
 					</MDBTabsItem>
+
 					<MDBTabsItem key='NextWeek'>
 						<MDBTabsLink
 							onClick={() => handleBasicClick('tab2')}
-							active={basicActive === 'tab2'}>
+							active={activeTab === 'tab2'}>
 							Next Week
 						</MDBTabsLink>
 					</MDBTabsItem>
+
 					<MDBTabsItem key='Etc'>
 						<MDBTabsLink
 							onClick={() => handleBasicClick('tab3')}
-							active={basicActive === 'tab3'}>
+							active={activeTab === 'tab3'}>
 							Etc
 						</MDBTabsLink>
 					</MDBTabsItem>
@@ -51,17 +53,17 @@ export default function TabBar() {
 				<MDBTabsContent>
 					<MDBTabsPane
 						className='this-week tab-content'
-						show={basicActive === 'tab1'}>
+						show={activeTab === 'tab1'}>
 						<ThisWeek />
 					</MDBTabsPane>
+
 					<MDBTabsPane
 						className='next-week tab-content'
-						show={basicActive === 'tab2'}>
+						show={activeTab === 'tab2'}>
 						<NextWeek />
 					</MDBTabsPane>
-					<MDBTabsPane
-						className='etc tab-content'
-						show={basicActive === 'tab3'}>
+
+					<MDBTabsPane className='etc tab-content' show={activeTab === 'tab3'}>
 						<Etc />
 					</MDBTabsPane>
 				</MDBTabsContent>
