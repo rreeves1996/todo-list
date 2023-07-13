@@ -13,13 +13,11 @@ export default function ThisWeek() {
 			</h1>
 			<Week>
 				{DAYS.map((day, index) => (
-					<>
-						<WeekDay
-							key={uuidv4()}
-							day={dayjs().day(index).format('dddd')}
-							date={dayjs().day(index).format('MMM D')}
-						/>
-					</>
+					<WeekDay
+						key={uuidv4()}
+						day={dayjs().day(index).format('dddd')}
+						date={dayjs().day(index).format('MMM D')}
+					/>
 				))}
 			</Week>
 		</>

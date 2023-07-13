@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface WeekProps {
-	children: any;
+	children: JSX.Element[];
 }
 
 export default function Week({ children }: WeekProps) {
